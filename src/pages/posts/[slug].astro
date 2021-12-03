@@ -1,0 +1,62 @@
+---
+import PostsLayout from '../../layouts/PostsLayout.astro'
+
+import Breadcrumb from '../../components/Posts/Breadcrumbs.astro'
+import Pagination from '../../components/Posts/Pagination.astro'
+import ListBadge from '../../components/Posts/ListBadge.astro'
+import Stats from '../../components/Posts/Stats.astro'
+import { getAllPosts, getPostBySlug } from '../../utils/api'
+
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
+export async function getStaticPaths() {
+    const posts = await getAllPosts(
+      import.meta.env.PUBLIC_CONTENTFUL_SPACE_ID,
+      import.meta.env.PUBLIC_CONTENTFUL_ACCESS_TOKEN
+    )
+    const allSlugs = posts.map(({slug}) =>  slug);
+    return  allSlugs.map(slug =>  ({ params : { slug: slug }, props: { allSlugs: allSlugs } }))
+}
+
+const { allSlugs } = Astro.props;
+const { slug } = Astro.request.params;
+const currentIndex = allSlugs.indexOf(slug)
+
+const post = await getPostBySlug(
+  import.meta.env.PUBLIC_CONTENTFUL_SPACE_ID,
+  import.meta.env.PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+  slug
+)
+
+const previous = currentIndex === 0 ? '' : allSlugs[currentIndex-1]
+const next = currentIndex === allSlugs.length - 1 ? '' :  allSlugs[currentIndex+1]
+---
+<PostsLayout title="Posts">
+  <div class="py-6 md:py-12 overflow-hidden space-y-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-base max-w-prose mx-auto lg:max-w-none">
+        <Breadcrumb slug={slug} title={post.title} />
+        <h1 class="mt-4 text-3xl leading-8 font-extrabold tracking-tight text-skin-secondary sm:text-4xl">{post.title}</h1>
+        <p class="text-sm text-skin-secondary-muted">{new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'}).format(post.date)}</p>
+      </div>
+    </div>
+    <section class="w-full aspect-w-6 aspect-h-3 md:aspect-h-2 overflow-hidden">
+      <img alt={post.heroImage.title} src={post.heroImage.url} class="w-full h-full object-center object-cover" />
+    </section>
+    <Stats/>
+    <div class="w-full max-w-prose mx-auto lg:max-w-5xl px-4">
+      <div class="md:py-12 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
+        <ListBadge heading="Ingredients" entries={post.ingredients} />
+        <ListBadge heading="Equipment" entries={post.equipment} />
+      </div>
+      <div class="relative z-10">
+        <article class="prose text-skin-secondary mx-auto lg:max-w-none">
+          {documentToHtmlString(post.instructions.json)}
+          <h3>We’re here to help</h3>
+          <p>Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. Laoreet sem est phasellus eu proin massa, lectus. Diam rutrum posuere donec ultricies non morbi. Mi a platea auctor mi.</p>
+        </article>
+      </div>
+      <Pagination previous={previous} next={next} />
+    </div>
+  </div>
+</PostsLayout>

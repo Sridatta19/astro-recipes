@@ -1,53 +1,22 @@
-:root {
-  --font-mono: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono',
-    'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
-  --color-light: #f3f4f6;
+.slide-track {
+  animation: slider 20s linear infinite;
+  width: calc(320px * 10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-light: #1f2937;
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px * 5));
   }
 }
 
-a {
-  color: inherit;
-}
-
-header > div {
-  font-size: clamp(2rem, -0.4742rem + 6.1856vw, 2.75rem);
-}
-
-header > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-header h1 {
-  font-size: 1em;
-  font-weight: 500;
-}
-header img {
-  width: 2em;
-  height: 2.667em;
-}
-
-h2 {
-  font-weight: 500;
-  font-size: clamp(1.5rem, 1rem + 1.25vw, 2rem);
-}
-
-.counter {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 1em;
-  font-size: 2rem;
-  justify-content: center;
-  padding: 2rem 1rem;
-}
-
-.counter > pre {
-  text-align: center;
-  min-width: 3ch;
+.gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    rgb(250, 218, 56),
+    rgb(51, 255, 119),
+    rgb(51, 187, 255)
+  );
 }

@@ -1,0 +1,24 @@
+---
+const images = [
+    {url: 'https://astro.build/', height: 'h-12', href: "/assets/astro.png"},
+    {url: 'https://www.contentful.com/', height: 'h-24', href: "/assets/contentful.png"},
+    {url: 'https://graphql.org/', height: 'h-20', href: "/assets/graphql.png"},
+    {url: 'https://www.netlify.com/', height: 'h-10', href: "/assets/netlify.png"},
+    {url: 'https://tailwindcss.com/', height: 'h-28', href: "/assets/tailwind.png"},
+]
+---
+<div class="bg-white py-24">
+  <div class="px-4 sm:px-12 md:text-center">
+    <h2 id="category-heading" class="text-lg font-bold md:text-2xl md:font-extrabold text-black">Built with</h2>
+    <p class="mt-1 text-sm md:text-base text-black">Click the images to navigate to the official links</p>
+  </div>
+  <div class="h-24 m-auto overflow-hidden relative w-full">
+    <div class="flex items-center slide-track">
+        {images.concat(images).map(image => <div class={`${image.height} w-64 md:w-80`}>
+          <a href={image.url} target="_blank">
+              <img class="object-contain w-full h-full" src={image.href} alt="" />
+          </a>
+        </div>)}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+const {title} = Astro.props;
+---
+<BaseLayout title={title}>
+    <nav class="bg-skin-accent-muted">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-start h-16">
+            <a href="/">
+                <span class="text-lg md:text-2xl font-black tracking-tight text-black">Recipes Blog</span>
+            </a>
+            </div>
+        </div>
+    </nav>
+    <slot />
+</BaseLayout>

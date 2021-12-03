@@ -1,0 +1,21 @@
+---
+import Slider from '../components/Slider.astro';
+const {title} = Astro.props;
+---
+<html lang="en" class="">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Recipes Blog - {title}</title>
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
+        <link rel="stylesheet" href={Astro.resolve('../styles/Home.css')}>
+    </head>
+    <body class="bg-skin-primary">
+        <main class="antialiased selection:bg-skin-accent-muted selection:text-black">
+            <slot />
+            <Slider />
+        </main>
+    </body>
+</html>
