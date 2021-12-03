@@ -3,6 +3,7 @@ export const POST_GRAPHQL_FIELDS = `
   preparationTime
   cookingTime
   publishDate
+  imageUrl
   heroImage {
     title
     url
@@ -10,7 +11,6 @@ export const POST_GRAPHQL_FIELDS = `
   slug
   equipment
   ingredients
-  preparation
   instructions {
     json
   }

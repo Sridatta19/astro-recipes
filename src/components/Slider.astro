@@ -1,10 +1,10 @@
 ---
 const images = [
-    {url: 'https://astro.build/', height: 'h-12', href: "/assets/astro.png"},
-    {url: 'https://www.contentful.com/', height: 'h-24', href: "/assets/contentful.png"},
-    {url: 'https://graphql.org/', height: 'h-20', href: "/assets/graphql.png"},
-    {url: 'https://www.netlify.com/', height: 'h-10', href: "/assets/netlify.png"},
-    {url: 'https://tailwindcss.com/', height: 'h-28', href: "/assets/tailwind.png"},
+    {label: 'Astro', url: 'https://astro.build/', height: 'h-12', href: "/assets/astro.png"},
+    {label: 'Contentful', url: 'https://www.contentful.com/', height: 'h-24', href: "/assets/contentful.png"},
+    {label: 'GraphQL', url: 'https://graphql.org/', height: 'h-20', href: "/assets/graphql.png"},
+    {label: 'Netlify', url: 'https://www.netlify.com/', height: 'h-10', href: "/assets/netlify.png"},
+    {label: 'Tailwind', url: 'https://tailwindcss.com/', height: 'h-28', href: "/assets/tailwind.png"},
 ]
 ---
 <div class="bg-white py-24">
@@ -15,8 +15,8 @@ const images = [
   <div class="h-24 m-auto overflow-hidden relative w-full">
     <div class="flex items-center slide-track">
         {images.concat(images).map(image => <div class={`${image.height} w-64 md:w-80`}>
-          <a href={image.url} target="_blank">
-              <img class="object-contain w-full h-full" src={image.href} alt="" />
+          <a aria-label={image.label} href={image.url} target="_blank" rel="noreferrer">
+              <img class={`object-contain ${image.height} w-64 md:w-80`} src={image.href} alt="" />
           </a>
         </div>)}
     </div>

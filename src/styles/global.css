@@ -11,6 +11,7 @@
   --color-accent: #ea580c;
   --color-accent-muted: #fb923c;
   --color-accent-hover: #c2410c;
+  --color-accent-text: #7c2d12;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +24,7 @@
     --color-accent: #84cc16;
     --color-accent-muted: #bef264;
     --color-accent-hover: #65a30d;
+    --color-accent-text: #365314;
   }
 }
 

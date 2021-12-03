@@ -14,13 +14,13 @@ const {heading, entries} = Astro.props;
         </svg>
     </div>
     <div class="ml-3">
-        <h3 class="text-lg font-semibold">
-        {heading}
-        </h3>
+        <h2 class="text-lg font-semibold">
+            {heading}
+        </h2>
         <div class="mt-2 text-sm">
-        <ul role="list" class="list-disc pl-5 space-y-1">
-            {entries.map(entry => <li>{entry}</li>)}
-        </ul>
+            <ul role="list" class="list-disc pl-5 space-y-1">
+                {entries.map(entry => <li>{entry}</li>)}
+            </ul>
         </div>
     </div>
     </div>

@@ -10,6 +10,7 @@ const themes = {
     accent: "var(--color-accent)",
     "accent-hover": "var(--color-accent-hover)",
     "accent-muted": "var(--color-accent-muted)",
+    "accent-text": "var(--color-accent-text)",
   },
 };
 
